@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+<ul class="list-unstyled">
+    <li th:each="trip : ${showAll}">
+        <a th:href="${ 'trips/'+trip.id}" th:text="${trip.name}"></a>
+    </li>
+</ul>
+<form action="http://localhost:8080/index" th:object="${trip}" method="post">
+    <input type="text" name="name" placeholder="place your trip name" required>
+    <input type="submit" value="submit">
+
+</form>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+</div>
+</body>
+</html>

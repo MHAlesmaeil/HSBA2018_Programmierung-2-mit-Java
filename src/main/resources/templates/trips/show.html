@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+<!--after picking up the number of the post we would show here a fields to be filled out -->
+    <h1>Welcome to your Trip</h1>
+    <table th:if="${!singleTrip.tripElementsList.empty}">
+        <tr>
+            <th>Trip name</th>
+            <th>Trip name</th>
+            <th>Trip name</th>
+
+        </tr>
+        <tr th:each="entry: ${singleTrip.tripElementsList}">
+            <td th:text="${entry.tripStart}"></td>
+            <td th:text="${entry.tripEnd}"></td>
+            <td th:text="${entry.tripDescription}"></td>
+        </tr>
+    </table>
+    <h2>New Trip Elements</h2>
+    <form th:action="'http://localhost:8080/'+${'trips/'+singleTrip.getId() + '/delete'}" method="post" class="form">
+        <button type="submit" class="btn btn-danger">Löschen</button>
+    </form>
+    <br>
+    <form th:action="'http://localhost:8080/'+${'trips/'+singleTrip.getId()}" method="post" class="form-inline">
+        <input name="tripStart" type="text" placeholder="Where does this trip start" required></input>
+        <input name="tripEnd" type="text" placeholder="Where does this trip end" required></input>
+        <textarea name="tripDescription" type="text" placeholder="Tell us a bit more about it" required></textarea>
+        <button type="submit" class="btn btn-primery"> send </button>
+
+    </form>
+
+
+
+
+    <!--<table th:if="${!}" class="table">
+        <tr>
+            <th>ausgegeben von</th>
+            <th>Betrag</th>
+            <th>ausgegeben für</th>
+        </tr>
+        <tr th:each="entry : ${singleTrips}">
+            <td th:text="${entry.creditor}"></td>
+            <td th:text="${#numbers.formatDecimal(entry.amount, 1, 2)}"></td>
+            <td th:text="${entry.debitors}"></td>
+        </tr>
+    </table>-->
+   <!-- <div th:each="balance : ${journal.computeBalance().entrySet()}">
+        <strong th:if="${balance.value &gt; 0}"
+                th:text="${balance.key + ' bekommt ' + #numbers.formatDecimal(balance.value, 1, 2)}"></strong>
+        <strong th:if="${balance.value &lt; 0}"
+                th:text="${balance.key + ' schuldet ' + #numbers.formatDecimal(-balance.value, 1, 2)}"></strong>
+    </div>
+-->
+
+
+
+
+
+
+
+</div>
