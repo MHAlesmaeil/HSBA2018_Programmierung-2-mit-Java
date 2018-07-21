@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -23,7 +24,12 @@ public class IndexController {
     }
     @PostMapping("/index")
     public String newTrip (@ModelAttribute("trip") Trip trip){
-        tripServices.create(trip.getStart(), trip.getEnd());
+        tripServices.create(trip);
+        return "redirect:/index";
+    }
+    @PostMapping("/trips/{id}/delete")
+    public String delete (@PathVariable("id")Long id){
+        tripServices.delete(id);
         return "redirect:/index";
     }
 

@@ -4,18 +4,91 @@
       layout:decorate="~{layout}">
 <body>
 <div layout:fragment="content">
-<ul class="list-unstyled">
-    <li th:each="trip : ${showAll}">
-        <a  th:text="${trip.start}"></a><a  th:text="${trip.end}"></a>
-    </li>
-</ul>
-<form action="http://localhost:8080/index"  method="post">
-    <input type="text" name="start" placeholder="place your trip name" required>
-    <input type="text" name="end" placeholder="place your trip name" required>
-    <input type="submit" value="submit">
+    <!-- private String start, end, date;
+    private boolean smoking, pet;
+    private int freeSeats, price; -->
 
-</form>
+    <ul class="list-unstyled">
+        <li th:each="trip : ${showAll}">
+            <a th:text="${trip.start}"></a><a th:text="${trip.end}"></a>
+            <a th:text="${trip.date}"></a><a th:text="${trip.smoking}"></a>
+            <a th:text="${trip.freeSeats}"></a><a th:text="${trip.pet}"></a>
+            <a th:text="${trip.price}"></a>
+            <form th:action="${'http://localhost:8080/trips/'+ trip.id + '/delete'}" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">
+                    <small>delete me</small>
+                </button>
+            </form>
+        </li>
+    </ul>
 
+    <div class="row margin-top-bottom jumbotron">
+        <div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">
+            <div class="row">
+                <form class="contact-us pattern-bg" action="http://localhost:8080/index" method="post">
+                    <!-- where is the start and the end of the  trip -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input id="name" class="form-control" type="text" name="start"
+                                   placeholder="place your trip name" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" id="end" class="form-control" name="end"
+                                   placeholder="place your trip name" required>
+                        </div>
+                    </div>
+                    <!-- date of the trip -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" id="website" class="form-control" name="date"
+                                   placeholder="date of the trip" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="">
+                                <select id="smoking" class="form-group form-control" name="smoking" required>
+                                    <option selected disabled>Is Smoking Allowed</option>
+                                    <option value="1">Somking is Allowed</option>
+                                    <option value="0" >No, please</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <select id="pet" class="form-group form-control" name="pet" required>
+                                    <option selected disabled>Is Pet Allowed</option>
+                                    <option value="1" selected disabled>Of Course</option>
+                                    <option value="0">No Please</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div >
+                            <input type="number" id="price" class="form-control" name="price" placeholder="Price"
+                                   required>
+                        </div>
+                        <div >
+                            <input type="number" id="freeSeat" class="form-control" name="freeSeats"
+                                   placeholder="number of free seats" required>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-center">
+        <button type="submit" class="button button-style button-style-dark button-style-color-2">Submit</button>
+    </div>
+    </form>
+
+
+</div>
+</div>
+</div>
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

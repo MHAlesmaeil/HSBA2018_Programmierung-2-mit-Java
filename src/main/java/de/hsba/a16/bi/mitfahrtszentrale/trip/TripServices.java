@@ -1,5 +1,6 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -13,10 +14,8 @@ public class TripServices {
     public TripServices(TripRepository repository) {
         this.repository = repository;
     }
-    public Trip create (String start, String end){
-        Trip trip = new Trip();
-        trip.setEnd(end);
-        trip.setStart(start);
+    @Autowired
+    public Trip create (Trip trip){
 
        return repository.save(trip);
 
@@ -24,18 +23,19 @@ public class TripServices {
     public Collection<Trip> getAllTrips (){
         return repository.findAll();
     }
+    public void delete (Long id){
+        this.repository.deleteById(id);
+    }
     @PostConstruct
     public void init (){
         repository.deleteAll();
         if (repository.findAll().isEmpty())
         {
+            /**
+             *String start, String end, String date, boolean smoking, boolean pet, int freeSeats, int price
+            */
 
-
-            create("something", "hamburg");
-            create("something", "hamburg");
-            create("something", "hamburg");
-            create("something", "hamburg");
-            create("something", "hamburg");
+            create(new Trip("Hamburg", "Lübeck", "101010", false, false, 12, 12)); create(new Trip("Hamburg", "Lübeck", "101010", false, false, 12, 12));
 
 
         }
