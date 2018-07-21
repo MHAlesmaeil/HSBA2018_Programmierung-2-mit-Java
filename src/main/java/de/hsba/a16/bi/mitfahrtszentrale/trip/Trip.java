@@ -19,14 +19,14 @@ public class Trip {
     @NotNull(message = "please do not leave it empty")
     private String name;
 
-    private List<TripElements> tripElementsList;
+   /* private List<TripElements> tripElementsList;
 
     public List<TripElements> getTripElementsList (){
         if (tripElementsList==null){
             tripElementsList = new ArrayList<>();
         }
         return tripElementsList;
-    }
+    }*/
 
     public String getName() {
         return name;

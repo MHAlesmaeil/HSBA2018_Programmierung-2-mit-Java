@@ -36,7 +36,7 @@ public class TripServices {
     public Trip delete (Long id){
         return repository.deleteById(id);
     }
-    public void addTripElement (Trip trip, TripElements tripElements){
+   /* public void addTripElement (Trip trip, TripElements tripElements){
         trip.getTripElementsList().add(tripElements);
-    }
+    }*/
 }
