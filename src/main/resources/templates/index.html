@@ -6,11 +6,12 @@
 <div layout:fragment="content">
 <ul class="list-unstyled">
     <li th:each="trip : ${showAll}">
-        <a  th:text="${trip.name}"></a>
+        <a  th:text="${trip.start}"></a><a  th:text="${trip.end}"></a>
     </li>
 </ul>
 <form action="http://localhost:8080/index"  method="post">
-    <input type="text" name="name" placeholder="place your trip name" required>
+    <input type="text" name="start" placeholder="place your trip name" required>
+    <input type="text" name="end" placeholder="place your trip name" required>
     <input type="submit" value="submit">
 
 </form>

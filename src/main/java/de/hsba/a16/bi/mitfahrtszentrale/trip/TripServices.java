@@ -13,8 +13,10 @@ public class TripServices {
     public TripServices(TripRepository repository) {
         this.repository = repository;
     }
-    public Trip create (String name){
-        Trip trip = new Trip(name);
+    public Trip create (String start, String end){
+        Trip trip = new Trip();
+        trip.setEnd(end);
+        trip.setStart(start);
 
        return repository.save(trip);
 
@@ -28,7 +30,13 @@ public class TripServices {
         if (repository.findAll().isEmpty())
         {
 
-            create("something");create("something");create("something");create("something");create("something");
+
+            create("something", "hamburg");
+            create("something", "hamburg");
+            create("something", "hamburg");
+            create("something", "hamburg");
+            create("something", "hamburg");
+
 
         }
     }

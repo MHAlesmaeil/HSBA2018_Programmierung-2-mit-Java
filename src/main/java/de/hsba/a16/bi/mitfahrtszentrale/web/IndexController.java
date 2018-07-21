@@ -23,7 +23,7 @@ public class IndexController {
     }
     @PostMapping("/index")
     public String newTrip (@ModelAttribute("trip") Trip trip){
-        tripServices.create(trip.getName());
+        tripServices.create(trip.getStart(), trip.getEnd());
         return "redirect:/index";
     }
 

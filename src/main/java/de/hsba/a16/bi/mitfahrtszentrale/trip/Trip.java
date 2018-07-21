@@ -16,11 +16,26 @@ public class Trip {
     @Id @GeneratedValue
     private Long id;
 
-    @NotNull(message = "please do not leave it empty")
-    private String name;
+    private String start, end;
 
-    public Trip(@NotNull(message = "please do not leave it empty") String name) {
-        this.name = name;
+    public Long getId() {
+        return id;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
     }
 
     public Trip() {
@@ -34,13 +49,6 @@ public class Trip {
         return tripElementsList;
     }*/
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 
 
