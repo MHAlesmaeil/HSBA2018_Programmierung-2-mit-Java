@@ -16,7 +16,7 @@ public class TripServices {
     public Trip create (String name){
         Trip trip = new Trip();
         trip.setName(name);
-       return repository.saveTrip(trip);
+       return repository.save(trip);
 
     }
     public Collection<Trip> getAllTrips (){
@@ -30,7 +30,7 @@ public class TripServices {
 
         }
     }
-    public Trip findeById (Long id){
+   /* public Trip findeById (Long id){
         return repository.findeById(id);
     }
     public Trip delete (Long id){
@@ -38,5 +38,5 @@ public class TripServices {
     }
     public void addTripElement (Trip trip, TripElements tripElements){
         trip.getTripElementsList().add(tripElements);
-    }
+    }*/
 }

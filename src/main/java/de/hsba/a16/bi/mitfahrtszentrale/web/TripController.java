@@ -17,7 +17,7 @@ public class TripController {
         this.tripServices = tripServices;
     }
 
-    @GetMapping(path = "/{id}")
+   /* @GetMapping(path = "/{id}")
     public String show (@PathVariable("id") Long id, Model model){
         model.addAttribute("singleTrip",tripServices.findeById(id));
         return "trips/show";
@@ -33,7 +33,7 @@ public class TripController {
     public String delete (@PathVariable("id") Long id){
          tripServices.delete(id);
         return "redirect:/index";
-    }
+    }*/
 
 
 }
