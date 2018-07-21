@@ -24,8 +24,10 @@ public class TripServices {
     }
     @PostConstruct
     public void init (){
+        repository.deleteAll();
         if (repository.findAll().isEmpty())
         {
+
             create("something");create("something");create("something");create("something");create("something");
 
         }

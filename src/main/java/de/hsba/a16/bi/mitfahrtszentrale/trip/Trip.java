@@ -17,7 +17,13 @@ public class Trip {
     @NotNull(message = "please do not leave it empty")
     private String name;
 
-   /* private List<TripElements> tripElementsList;
+    public Trip(@NotNull(message = "please do not leave it empty") String name) {
+        this.name = name;
+    }
+
+    public Trip() {
+    }
+    /* private List<TripElements> tripElementsList;
 
     public List<TripElements> getTripElementsList (){
         if (tripElementsList==null){
