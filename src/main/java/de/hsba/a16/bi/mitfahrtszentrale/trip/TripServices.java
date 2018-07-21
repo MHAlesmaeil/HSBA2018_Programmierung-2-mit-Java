@@ -14,8 +14,8 @@ public class TripServices {
         this.repository = repository;
     }
     public Trip create (String name){
-        Trip trip = new Trip();
-        trip.setName(name);
+        Trip trip = new Trip(name);
+
        return repository.save(trip);
 
     }
