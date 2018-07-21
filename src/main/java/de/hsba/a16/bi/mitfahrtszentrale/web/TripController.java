@@ -17,12 +17,12 @@ public class TripController {
         this.tripServices = tripServices;
     }
 
-    /*@GetMapping(path = "/{id}")
+    @GetMapping(path = "/{id}")
     public String show (@PathVariable("id") Long id, Model model){
         model.addAttribute("singleTrip",tripServices.findeById(id));
         return "trips/show";
-    }*/
-    /*@PostMapping(path = "/{id}")
+    }
+    @PostMapping(path = "/{id}")
     public String addEntry (@PathVariable("id") Long id, TripElements elemet){
         System.out.println("request has arrived");
         Trip trip = tripServices.findeById(id);
@@ -33,7 +33,7 @@ public class TripController {
     public String delete (@PathVariable("id") Long id){
          tripServices.delete(id);
         return "redirect:/index";
-    }*/
+    }
 
 
 }
