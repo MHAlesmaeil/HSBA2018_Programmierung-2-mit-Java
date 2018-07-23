@@ -4,12 +4,10 @@ import de.hsba.a16.bi.mitfahrtszentrale.trip.Trip;
 import de.hsba.a16.bi.mitfahrtszentrale.trip.TripServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/index")
 public class IndexController {
     private final TripServices tripServices;
 
@@ -17,20 +15,13 @@ public class IndexController {
         this.tripServices = tripServices;
     }
 
-    @GetMapping("/index")
-    public String index (Model model){
-        model.addAttribute("showAll", tripServices.getAllTrips());
+    @GetMapping
+    public String index (){
         return "index";
     }
-    @PostMapping("/index")
-    public String newTrip (@ModelAttribute("trip") Trip trip){
-        tripServices.create(trip);
-        return "redirect:/index";
-    }
-    @PostMapping("/trips/{id}/delete")
-    public String delete (@PathVariable("id")Long id){
-        tripServices.delete(id);
-        return "redirect:/index";
-    }
+
+
+
+
 
 }

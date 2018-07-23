@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+    <div class="row margin-top-bottom jumbotron">
+        <div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8">
+            <div class="row">
+                <form class="contact-us pattern-bg" action="http://localhost:8080/new-trip" method="post" th:object="${newTrip}">
+                    <!--  @Basic(optional = false)
+    private String start, end, date;
+
+    private boolean smoking, pet;
+    @Basic(optional = false)
+    private int freeSeats, price; -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input id="start" class="form-control" type="text" name="start"
+                                   placeholder="Start" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" id="end" class="form-control" name="end"
+                                   placeholder="End" required>
+                        </div>
+                    </div>
+                    <!-- date of the trip -->
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" id="website" class="form-control" name="date"
+                                   placeholder="date of the trip" required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="">
+                                <select id="smoking" class="form-group form-control" name="smoking" required>
+                                    <option selected disabled>Is Smoking Allowed</option>
+                                    <option value="1">Somking is Allowed</option>
+                                    <option value="0">No, please</option>
+                                </select>
+                            </div>
+                            <div class="">
+                                <select id="pet" class="form-group form-control" name="pet" required>
+                                    <option selected disabled>Is Pet Allowed</option>
+                                    <option value="1" selected>Of Course</option>
+                                    <option value="0">No Please</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div>
+                            <input type="number" id="price" class="form-control" name="price" placeholder="Price"
+                                   required>
+                        </div>
+                        <div>
+                            <input type="number" id="freeSeat" class="form-control" name="freeSeats"
+                                   placeholder="number of free seats" required>
+                        </div>
+                    </div>
+
+                    <div class="text-center ">
+                        <button type="submit" class="btn btn-lg btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

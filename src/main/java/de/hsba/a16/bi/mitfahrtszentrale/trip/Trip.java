@@ -3,10 +3,7 @@ package de.hsba.a16.bi.mitfahrtszentrale.trip;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +16,11 @@ import java.util.TreeMap;
 public class Trip {
     @Id @GeneratedValue
     private Long id;
-
+    @Basic(optional = false)
     private String start, end, date;
+
     private boolean smoking, pet;
+    @Basic(optional = false)
     private int freeSeats, price;
 
     public Long getId() {

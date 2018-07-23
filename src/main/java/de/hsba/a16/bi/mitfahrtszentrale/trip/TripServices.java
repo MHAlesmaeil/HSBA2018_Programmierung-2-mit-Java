@@ -2,11 +2,13 @@ package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
 
 @Service
+@Transactional
 public class TripServices {
     private final TripRepository repository;
 
@@ -14,7 +16,7 @@ public class TripServices {
     public TripServices(TripRepository repository) {
         this.repository = repository;
     }
-    @Autowired
+
     public Trip create (Trip trip){
 
        return repository.save(trip);
@@ -28,7 +30,6 @@ public class TripServices {
     }
     @PostConstruct
     public void init (){
-        repository.deleteAll();
         if (repository.findAll().isEmpty())
         {
             /**
