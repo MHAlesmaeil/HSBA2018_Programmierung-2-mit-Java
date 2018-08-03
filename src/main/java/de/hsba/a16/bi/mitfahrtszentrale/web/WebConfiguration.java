@@ -6,8 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WebConfiguration {
+
     @Bean
-    public LayoutDialect layoutDialect (){
+    public LayoutDialect layoutDialect() {
         return new LayoutDialect();
     }
 }
