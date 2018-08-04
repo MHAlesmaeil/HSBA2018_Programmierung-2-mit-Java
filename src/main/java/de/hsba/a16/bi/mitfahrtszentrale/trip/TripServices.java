@@ -17,9 +17,13 @@ public class TripServices {
         this.repository = repository;
     }
 
-    public Trip create (Trip trip){
+    public void createTripBySet (String start, String end, String date, boolean smoking, boolean pet, boolean bookable, int freeSeats, int price){
+    	repository.save(new Trip(start,end,date,smoking,pet,bookable,freeSeats,price));
+    }
 
-       return repository.save(trip);
+    public void create (Trip trip){
+
+       repository.save(trip);
 
     }
     public Collection<Trip> getAllTrips (){
@@ -28,19 +32,14 @@ public class TripServices {
     public void delete (Long id){
         this.repository.deleteById(id);
     }
-    @PostConstruct
-    public void init (){
-        if (repository.findAll().isEmpty())
-        {
-            /**
-             *String start, String end, String date, boolean smoking, boolean pet, int freeSeats, int price
-            */
-
-            create(new Trip("Hamburg", "Lübeck", "101010", false, false, 12, 12)); create(new Trip("Hamburg", "Lübeck", "101010", false, false, 12, 12));
+	@PostConstruct
+	public void init() {
+		if (repository.count() == 0) {
+			createTripBySet("hh","hh","01.12.2018",false, false,false,12,12);
 
 
-        }
-    }
+		}
+	}
    /* public Trip findeById (Long id){
         return repository.findeById(id);
     }

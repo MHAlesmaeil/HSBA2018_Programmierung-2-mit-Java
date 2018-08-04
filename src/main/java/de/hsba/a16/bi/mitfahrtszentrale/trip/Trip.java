@@ -6,10 +6,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Entity
 @Table(name = "trip")
@@ -18,11 +16,27 @@ public class Trip {
     @Id @GeneratedValue
     private Long id;
     @Basic(optional = false)
-    private String start, end, date;
+    private String start, end;
 
-    private boolean smoking, pet;
+    private boolean smoking, pet, bookable;
     @Basic(optional = false)
-    private int freeSeats, price;
+    private int freeSeats;
+    @Basic(optional = false)
+    private int price;
+
+
+    private String date;
+	/*@ManyToOne
+    private User owner;
+
+    @PrePersist
+	private void onPersist (){
+    	this.owner = User.getCurrentUser();
+	}
+	public boolean isOwnedByCurrentUser (){
+    	return this.owner != null && this.owner.equals(User.getCurrentUser());
+	}*/
+
 
 
 
@@ -35,7 +49,8 @@ public class Trip {
     }
 
 
-    public Trip(String start, String end, String date, boolean smoking, boolean pet, int freeSeats, int price) {
+    public Trip( String start, String end, String date, boolean smoking, boolean pet, boolean bookable, int freeSeats, int price) {
+
         this.start = start;
         this.end = end;
         this.date = date;
@@ -43,9 +58,22 @@ public class Trip {
         this.pet = pet;
         this.freeSeats = freeSeats;
         this.price = price;
+        this.bookable= bookable;
     }
 
-    public String getStart() {
+	public boolean isBookable() {
+		return bookable;
+	}
+
+	public void setBookable(boolean bookable) {
+		this.bookable = bookable;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getStart() {
         return start;
     }
 
@@ -59,14 +87,6 @@ public class Trip {
 
     public void setEnd(String end) {
         this.end = end;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public boolean isSmoking() {
