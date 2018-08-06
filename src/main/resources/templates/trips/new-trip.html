@@ -16,42 +16,42 @@
 		</div>
 		<label for="inputStart" class="col-sm-2 control-label">Von</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inputStart" name="start" th:field="*{start}" autofocus/>
+			<input type="text" class="form-control" id="inputStart" required name="start"  th:field="*{start}" autofocus/>
 			<label class="text-danger" th:errors="*{start}"/>
 		</div>
 
 		<div class="form-group ">
 			<label for="inputEnd" class="col-sm-2 control-label">Nach</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputEnd" name="end" th:field="*{end}"/>
+				<input type="text" class="form-control" id="inputEnd" required  name="end" th:field="*{end}" />
 				<label class="text-danger" th:errors="*{end}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-2 control-label" >Das Datum</label>
 			<div class="col-sm-10">
-				<input type="date" class="form-control" id="inputDate" th:field="*{date}" name="date"/>
+				<input type="date" class="form-control" min="2018-01-01" required   id="inputDate" th:field="*{date}" name="date"/>
 				<label class="text-danger" th:errors="*{date}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputFreeSeat" class="col-sm-2 control-label" >Freie Platze</label>
 			<div class="col-sm-10">
-				<input type="number" value="0"  min="1" step="1" max="14" class="form-control" id="inputFreeSeat" th:field="*{freeSeats}" name="freeSeats"/>
+				<input type="number" value="0"  min="1" step="1" required  max="14" class="form-control" id="inputFreeSeat" th:field="*{freeSeats}" name="freeSeats"/>
 				<label class="text-danger" th:errors="*{freeSeats}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputprice" class="col-sm-2 control-label" >Preis Pro Platz</label>
 			<div class="col-sm-10">
-				<input type="number"  min="0" step="1" max="1000" class="form-control" id="inputprice" th:field="*{price}" name="price"/>
+				<input type="number"  min="0" step="1" max="1000" required  class="form-control" id="inputprice" th:field="*{price}" name="price"/>
 				<label class="text-danger" th:errors="*{price}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputprice" class="col-sm-2 control-label" >Haustiere</label>
 			<div class="col-sm-10">
-				<select id="inputPet" name="pet" class="form-control">
+				<select id="inputPet" name="pet" class="form-control" required >
 					<option value="">Waehlen Sie bitte</option>
 					<option value="0">Nein, Danke</option>
 					<option value="1">Ja, Gerne</option>
@@ -62,7 +62,7 @@
 		<div class="form-group">
 			<label for="inputprice" class="col-sm-2 control-label" >Rauchen</label>
 			<div class="col-sm-10">
-				<select id="inputSomking" name="somking"  class="form-control">
+				<select id="inputSomking" name="somking"  class="form-control" required >
 					<option value="" >Waehlen Sie bitte</option>
 					<option value="0">Nein, Danke</option>
 					<option value="1">Ja, Gerne</option>
@@ -73,7 +73,7 @@
 		<div class="form-group">
 			<label for="inputprice" class="col-sm-2 control-label" >Buchbar</label>
 			<div class="col-sm-10">
-				<select id="inputBookable" name="bookable"  class="form-control">
+				<select id="inputBookable" name="bookable"  class="form-control" required >
 					<option value="" >Waehlen Sie bitte</option>
 					<option value="0">Nein, Danke</option>
 					<option value="1">Ja, Gerne</option>
@@ -90,8 +90,34 @@
 	</form>
 
 	<h1>something</h1>
+	<table th:if="${!allTrips.empty}" class="table table-responsive-md table-bordered table-success">
+		<tr>
+			<th>Start</th>
+			<th>Ende</th>
+			<th>Date des Trips</th>
+			<th>Preis</th>
+			<th>Verfügbare Plätze</th>
+			<th>Pet</th>
+			<th>Smoking</th>
+			<th>Buchbar</th>
+
+		</tr>
+		<tr th:each="trip :${allTrips}">
+			<td th:text="${trip.start}"></td>
+			<td th:text="${trip.end}"></td>
+			<td th:text="${trip.date}"></td>
+			<td th:text="${trip.price}"></td>
+			<td th:text="${trip.freeSeats}"></td>
+			<td th:text="${trip.pet}"></td>
+			<td th:text="${trip.smoking}"></td>
+			<td th:text="${trip.bookable}"></td>
+
+
+		</tr>
+	</table>
 
 
 
+</div>
 </body>
 </html>

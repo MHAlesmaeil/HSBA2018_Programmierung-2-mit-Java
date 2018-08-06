@@ -35,7 +35,7 @@ public class TripServices {
 	@PostConstruct
 	public void init() {
 		if (repository.count() == 0) {
-			createTripBySet("hh","hh","01.12.2018",false, false,false,12,12);
+			createTripBySet("hh","hh","01.12.2018 ",false, false,false,12,12);
 
 
 		}

@@ -1,11 +1,15 @@
 package de.hsba.a16.bi.mitfahrtszentrale.web.validation;
 
 import de.hsba.a16.bi.mitfahrtszentrale.trip.Trip;
+import org.springframework.format.datetime.DateFormatterRegistrar;
 
 import javax.validation.constraints.*;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class TripFormValidation {
 
@@ -25,9 +29,7 @@ public class TripFormValidation {
 		@Size(max = 50, message = "Der Name der Stadt kann nicht mehr als 50 Buchstabe sein")
 	})
 	private String start, end;
-
 	private String date;
-
 	private boolean somking, pet,bookable;
 	@Min(value = 1, message = "Mindestens müssen Sie einen freien Platz um einen Trip zulegen")
 	@Max(value = 14, message = "Mehr als 14 platz geht leider nicht, wir sind keine Buszentrale")
@@ -73,8 +75,7 @@ public class TripFormValidation {
 		return date;
 	}
 
-	public void setDate(String date) {
-
+	public void setDate(String date)  {
 		this.date = date;
 	}
 

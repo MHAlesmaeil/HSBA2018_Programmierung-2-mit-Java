@@ -32,6 +32,7 @@ public class NewTripController {
 	@GetMapping("/new-trip")
 	public String showForm (Model model){
 		model.addAttribute("newTripForm", new TripFormValidation());
+		model.addAttribute("allTrips", tripServices.getAllTrips());
 
 
 		return "trips/new-trip";

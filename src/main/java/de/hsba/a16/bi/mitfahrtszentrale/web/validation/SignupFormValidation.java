@@ -4,6 +4,7 @@ import de.hsba.a16.bi.mitfahrtszentrale.user.User;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class SignupFormValidation {
@@ -19,7 +20,7 @@ public class SignupFormValidation {
 	private String firstName, lastName;
 
 	@Size.List({
-		@Size(min = 4, message = "Ihr Passwort muss mindesten 6 Buchstaben sein"),
+		@Size(min = 6, message = "Ihr Passwort muss mindesten 6 Buchstaben sein"),
 		@Size(max = 30, message = "Ihre Password kann max 30 Buchstaben sein")
 	})
 	private String password;

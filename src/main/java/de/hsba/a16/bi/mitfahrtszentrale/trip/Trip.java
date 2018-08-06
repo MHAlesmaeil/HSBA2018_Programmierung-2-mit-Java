@@ -73,6 +73,10 @@ public class Trip {
 		this.date = date;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
 	public String getStart() {
         return start;
     }
