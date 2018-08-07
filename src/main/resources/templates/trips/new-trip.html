@@ -102,6 +102,8 @@
 			<th>Smoking</th>
 			<th>Buchbar</th>
 			<th>go to</th>
+			<th>Delete</th>
+
 
 		</tr>
 		<tr th:each="trip :${allTrips}">
@@ -115,6 +117,11 @@
 			<td th:text="${trip.smoking}"></td>
 			<td th:text="${trip.bookable}"></td>
 			<td ><a th:href="${'http://localhost:8080/trips/'+trip.id}"> Here</a></td>
+			<td ><a th:href="${'http://localhost:8080/trips/'+trip.id}">
+				<button type="button" class="btn btn-default btn-lg">
+					<span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
+				</button>
+			</a></td>
 
 		</tr>
 	</table>
