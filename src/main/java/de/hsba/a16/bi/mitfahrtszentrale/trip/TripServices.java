@@ -1,6 +1,6 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,43 +10,57 @@ import java.util.Collection;
 @Service
 @Transactional
 public class TripServices {
-    private final TripRepository repository;
+	// Variable for trip repository
+	private final TripRepository repository;
+	// Varible for trip rating repository
+	private final TripRatingRepository ratingRepository;
 
+	// Constructor
+	public TripServices(TripRepository repository, TripRatingRepository ratingRepository) {
+		this.repository = repository;
+		this.ratingRepository = ratingRepository;
+	}
+	// creating a trip
+	public void create(Trip trip) {
+		repository.save(trip);
+	}
+	// finding a trip by ID
+	public Trip findTripById (Long id){
+		return repository.findById(id).orElse(null);
+	}
+	// get all trips to repeat them in foreach
+	public Collection<Trip> getAllTrips() {
+		return repository.findAll();
+	}
 
-    public TripServices(TripRepository repository) {
-        this.repository = repository;
-    }
+	// delete a trip
+	public void delete(Long id) {
+		this.repository.deleteById(id);
+	}
 
-    public void createTripBySet (String start, String end, String date, boolean smoking, boolean pet, boolean bookable, int freeSeats, int price){
-    	repository.save(new Trip(start,end,date,smoking,pet,bookable,freeSeats,price));
-    }
+	// add rating and making a trip and rating as parameter to call this function
+	public void addRating (Trip trip, TripRating rating){
+		rating.setTrip(trip);
+		trip.getRaing().add(rating);
 
-    public void create (Trip trip){
+	}
 
-       repository.save(trip);
-
-    }
-    public Collection<Trip> getAllTrips (){
-        return repository.findAll();
-    }
-    public void delete (Long id){
-        this.repository.deleteById(id);
-    }
+	// for test purpose a trip has been created
 	@PostConstruct
 	public void init() {
 		if (repository.count() == 0) {
-			createTripBySet("hh","hh","01.12.2018 ",false, false,false,12,12);
-
-
+			create(new Trip("hh", "hh", "01.12.2018 ", false, false, false, 12, 12));
 		}
 	}
-   /* public Trip findeById (Long id){
-        return repository.findeById(id);
-    }
-    public Trip delete (Long id){
-        return repository.deleteById(id);
-    }
-    public void addTripElement (Trip trip, TripElements tripElements){
-        trip.getTripElementsList().add(tripElements);
-    }*/
+
+	// this area is for triprating
+	//find all rating
+	public TripRating findTripRating(Long id) {
+		return ratingRepository.findById(id).orElse(null);
+	}
+	// save rating
+	public TripRating saveRating (TripRating rating){
+		return ratingRepository.save(rating);
+	}
+
 }

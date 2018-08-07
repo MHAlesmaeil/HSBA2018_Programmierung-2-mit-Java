@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
+<body>
+
+<div layout:fragment="content">
+	<div class="page-header">
+		<h1>signup</h1>
+	</div>
+	<form method="post" class="form-horizontal" th:object="${ratingform}" th:action="@{'http://localhost:8080/trips/'+${tripNumber.id}}">
+		<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+			<p>Ihre Kommentar ist nicht vollständig</p>
+		</div>
+		<label for="inputComment" class="col-sm-2 control-label">Ihre Kommentar Über den Trip</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="inputComment" name="comment" th:field="*{comment}" autofocus/>
+			<label class="text-danger" th:errors="*{comment}"/>
+		</div>
+
+		<div class="form-group ">
+			<label for="inputRate" class="col-sm-2 control-label">Ihr Bewertung</label>
+			<div class="col-sm-10">
+				<input type="number" min="1" max="5" class="form-control" id="inputRate" required name="rate"
+					   th:field="*{rate}"/>
+				<label class="text-danger" th:errors="*{rate}"/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary">Anmelden</button>
+			</div>
+		</div>
+	</form>
+	<table th:if="${!tripNumber.raing.empty}" class="table table-responsive-md table-bordered table-success">
+		<tr>
+			<th>#</th>
+			<th>Rate</th>
+			<th>Comment</th>
+
+		</tr>
+		<tr th:each="rating: ${tripNumber.raing}">
+			<td th:text="${rating.id}"></td>
+			<td th:text="${rating.rate}"></td>
+			<td th:text="${rating.comment}"></td>
+
+		</tr>
+
+
+	</table>
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

@@ -45,10 +45,11 @@ public class NewTripController {
 	@PostMapping("/new-trip")
 	public String createTrip (@ModelAttribute("newTripForm")@Valid TripFormValidation tripFormValidation, BindingResult bindingResult){
 		if (bindingResult.hasErrors()){
-			return "trips/new-trip";
-		}
-		Trip trip = new Trip();
-		tripServices.create(formAssembler.update(trip,tripFormValidation));
-		return "redirect:/index";
+			return "trips/new-trip";}
+			Trip trip = new Trip();
+			tripServices.create(formAssembler.update(trip,tripFormValidation));
+
+			return "redirect:/index";
+
 	}
 }

@@ -26,28 +26,16 @@ public class Trip {
 
 
     private String date;
-	/*@ManyToOne
-    private User owner;
 
-    @PrePersist
-	private void onPersist (){
-    	this.owner = User.getCurrentUser();
-	}
-	public boolean isOwnedByCurrentUser (){
-    	return this.owner != null && this.owner.equals(User.getCurrentUser());
-	}*/
-
-
-
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "trip")
+	private List<TripRating> raing;
 
     public Long getId() {
         return id;
     }
 
-
     public Trip() {
     }
-
 
     public Trip( String start, String end, String date, boolean smoking, boolean pet, boolean bookable, int freeSeats, int price) {
 
@@ -124,16 +112,15 @@ public class Trip {
     public void setPrice(int price) {
         this.price = price;
     }
-    /* private List<TripElements> tripElementsList;
 
-    public List<TripElements> getTripElementsList (){
-        if (tripElementsList==null){
-            tripElementsList = new ArrayList<>();
-        }
-        return tripElementsList;
-    }*/
+	public List<TripRating> getRaing() {
+		if (raing== null){
+			raing= new ArrayList<>();
+		}
+		return raing;
+	}
 
-
-
-
+	public void setRaing(List<TripRating> raing) {
+		this.raing = raing;
+	}
 }

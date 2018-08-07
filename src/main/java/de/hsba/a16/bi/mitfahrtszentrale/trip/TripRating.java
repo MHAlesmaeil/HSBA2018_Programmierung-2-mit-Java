@@ -1,10 +1,6 @@
-/*
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
-
-import sun.font.TrueTypeFont;
-
 import javax.persistence.*;
-import java.math.BigDecimal;
+
 
 @Entity
 public class TripRating {
@@ -18,18 +14,22 @@ public class TripRating {
 	@Basic(optional = true)
 	private String comment;
 
-	private BigDecimal rate;
+	private int rate;
 
 	public TripRating() {
 	}
 
 	int numberOfUsers = 0;
-	public TripRating(int numberOfUsers, Trip trip, String comment, BigDecimal rate) {
+	public TripRating(int numberOfUsers, Trip trip, String comment, int rate) {
 		// number of user who called this function
 		this.numberOfUsers = numberOfUsers;
 		this.trip = trip;
 		this.comment = comment;
 		this.rate = rate;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public Trip getTrip() {
@@ -48,11 +48,11 @@ public class TripRating {
 		this.comment = comment;
 	}
 
-	public BigDecimal getRate() {
+	public int getRate() {
 		return rate;
 	}
 
-	public void setRate(BigDecimal rate) {
+	public void setRate(int rate) {
 		this.rate = rate;
 	}
 
@@ -66,4 +66,3 @@ public class TripRating {
 	// calculation of the rate
 
 }
-*/

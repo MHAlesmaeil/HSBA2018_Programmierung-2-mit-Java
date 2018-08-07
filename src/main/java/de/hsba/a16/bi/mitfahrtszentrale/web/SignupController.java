@@ -1,12 +1,14 @@
 package de.hsba.a16.bi.mitfahrtszentrale.web;
 
 
+import com.sun.xml.internal.ws.api.message.ExceptionHasMessage;
 import de.hsba.a16.bi.mitfahrtszentrale.user.User;
 import de.hsba.a16.bi.mitfahrtszentrale.user.UserService;
 import de.hsba.a16.bi.mitfahrtszentrale.web.validation.SignupFormAssembler;
 import de.hsba.a16.bi.mitfahrtszentrale.web.validation.SignupFormValidation;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,7 +49,9 @@ public class SignupController {
 			return "signup";
 		}
 		User user = new User();
-		this.userService.createUserByEntiy(formAssembler.update(user,formValidation));
+
+			this.userService.createUserByEntiy(formAssembler.update(user, formValidation));
+
         return "redirect:/index";
     }
 }

@@ -92,6 +92,7 @@
 	<h1>something</h1>
 	<table th:if="${!allTrips.empty}" class="table table-responsive-md table-bordered table-success">
 		<tr>
+			<th>#</th>
 			<th>Start</th>
 			<th>Ende</th>
 			<th>Date des Trips</th>
@@ -100,9 +101,11 @@
 			<th>Pet</th>
 			<th>Smoking</th>
 			<th>Buchbar</th>
+			<th>go to</th>
 
 		</tr>
 		<tr th:each="trip :${allTrips}">
+			<td th:text="${trip.id}"></td>
 			<td th:text="${trip.start}"></td>
 			<td th:text="${trip.end}"></td>
 			<td th:text="${trip.date}"></td>
@@ -111,7 +114,7 @@
 			<td th:text="${trip.pet}"></td>
 			<td th:text="${trip.smoking}"></td>
 			<td th:text="${trip.bookable}"></td>
-
+			<td ><a th:href="${'http://localhost:8080/trips/'+trip.id}"> Here</a></td>
 
 		</tr>
 	</table>
