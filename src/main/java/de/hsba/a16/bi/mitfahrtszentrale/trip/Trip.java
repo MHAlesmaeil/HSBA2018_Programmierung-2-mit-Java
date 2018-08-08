@@ -8,7 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+/**
+ *Diese Klasse definiert eine Fahrt
+*/
 @Entity
 @Table(name = "trip")
 @Component

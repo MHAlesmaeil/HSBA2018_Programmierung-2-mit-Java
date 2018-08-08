@@ -28,30 +28,22 @@ public class SignupController {
 		this.userService = userService;
 		this.formAssembler = formAssembler;
 	}
-
+	//  jeder kann den URL aufrufen
 	@GetMapping("/signup")
     public String signupShow (Model model){
-
-
+		// nur für Testzwecke todo löschen, wenn Ihr das nicht mehr bracht .. vergis bitte auch nicht den Code bei HTML zu löschen auch
        model.addAttribute("users", userService.findAll());
        model.addAttribute("signupForm", new SignupFormValidation());
-
         return "signup";
     }
-
-
-
-
+    // Objekt sigupForm wird hier behandlt
     @PostMapping("/signup")
     public String createUser (@ModelAttribute("signupForm")@Valid SignupFormValidation formValidation, BindingResult bindingResult){
-
 		if (bindingResult.hasErrors()){
 			return "signup";
 		}
 		User user = new User();
-
 			this.userService.createUserByEntiy(formAssembler.update(user, formValidation));
-
         return "redirect:/index";
     }
 }

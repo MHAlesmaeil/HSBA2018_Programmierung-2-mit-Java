@@ -19,7 +19,7 @@ public class TripRatingController {
 	public TripRatingController(TripServices tripServices) {
 		this.tripServices = tripServices;
 	}
-
+	// Fahrt mit den ID={id} aufrufen .. wenn die Fahrt nicht exitiert wird eine Exception aufgelöst
 	@ModelAttribute("tripNumber")
 	public Trip getTrip(@PathVariable("id") Long id){
 		Trip rating = tripServices.findTripById(id);
@@ -28,9 +28,6 @@ public class TripRatingController {
 		}
 		return rating;
 	}
-
-
-
 	@GetMapping
 	public String showRating (Model model, @PathVariable("id") Long id){
 		model.addAttribute("ratingform", new TripRating());
@@ -41,11 +38,9 @@ public class TripRatingController {
 	public String sendRating (@PathVariable("id") Long id, @ModelAttribute("ratingForm") TripRating tripRating, BindingResult bindingResult, Model model){
 		Trip trip = getTrip(id);
 		if (bindingResult.hasErrors()){
-
-			//validation need to be constructed here
+			//todo validation need to be constructed here
 			return "trips/rating";
 		}
-
 		 tripServices.addRating(trip, tripRating);
 		return "redirect:/index";
 

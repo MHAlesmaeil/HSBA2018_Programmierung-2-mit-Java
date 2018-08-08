@@ -1,7 +1,11 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 import javax.persistence.*;
 
-
+/**
+ *Diese Klasse definiert die Bewertung einer Fahrt
+ *
+ * todo : Eine Funktion muss hier erstellt weden, um alle Bewertungen einer Fahrt zu rechnen und durch eine lokale variable zu dividieren, um die durchschnit der Wertung zu bekommen
+*/
 @Entity
 public class TripRating {
 

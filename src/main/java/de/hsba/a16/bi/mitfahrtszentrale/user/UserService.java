@@ -19,7 +19,7 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
+	// Diese Nutzer wurden schon definiert und damit ist die Einlogen schon möglich
     @PostConstruct
     public void init() {
         if (userRepository.count() == 0) {
@@ -28,7 +28,7 @@ public class UserService {
 
         }
     }
-
+	
     public void createUser(String username, String password, String role, String firstName, String lastName, String email) {
         userRepository.save(new User(username, passwordEncoder.encode(password), role, firstName, lastName, email));
     }
@@ -37,6 +37,7 @@ public class UserService {
     	userRepository.save(user);
     }
 
+	// TODO: 08.08.2018 diese Methode sollte nur für TestZwecken benutzt werden --> No Implementation  
     public List<User> findAll() {
         return userRepository.findAll();
     }

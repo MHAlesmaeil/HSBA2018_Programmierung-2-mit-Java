@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController {
 	private TripServices tripServices;
 
+	// Es ist immer noch nicht benutzt .. todo ist es zu diskutieren, was wir in der Index seite Zeigen soll
     @GetMapping("/index")
-    public String index(Model model) {
+    public String index() {
         return "/index";
     }
 
+    // jede kann diesen URL aufrufen
     @GetMapping("/login")
     public String login() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -26,8 +26,6 @@ public class UserAdapterService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-
-
 		return new UserAdapter(user);
     }
 }

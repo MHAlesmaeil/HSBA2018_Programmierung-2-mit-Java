@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
-
+/**
+ *todo: Owner verbinden mit dem Trip
+*/
 @Entity
 public class User implements Comparable<User> {
 
