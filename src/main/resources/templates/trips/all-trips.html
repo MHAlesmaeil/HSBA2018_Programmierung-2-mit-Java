@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
+<body>
+
+<div layout:fragment="content">
+
+	<div class="page-header">
+		<h1>
+			Unsere Fahrten
+		</h1>
+	</div>
+	<table th:if="${!allTrips.empty}" class="table table-responsive-md table-bordered table-success">
+		<tr>
+			<th>#</th>
+			<th>Start</th>
+			<th>Ende</th>
+			<th>Date des Trips</th>
+			<th>Preis</th>
+			<th>Verfügbare Plätze</th>
+			<th>Pet</th>
+			<th>Smoking</th>
+			<th>Buchbar</th>
+			<th>go to rating</th>
+			<th>Average rating</th><!-- Delete Option nur für den Owner -->
+			<th>First Name</th> <!-- der Vorname nur für den Owner gezeigt wird -->
+			<th>delete</th><!-- hier wird der Owner gezeigt -->
+
+
+
+		</tr>
+		<tr th:each="trip :${allTrips}">
+			<td th:text="${trip.id}"></td>
+			<td th:text="${trip.start}"></td>
+			<td th:text="${trip.end}"></td>
+			<td th:text="${trip.date}"></td>
+			<td th:text="${trip.price}"></td>
+			<td th:text="${trip.freeSeats}"></td>
+			<td th:text="${trip.pet}"></td>
+			<td th:text="${trip.smoking}"></td>
+			<td th:text="${trip.bookable}"></td>
+			<td ><a th:href="${'http://localhost:8080/trips/'+trip.id}"> Here</a></td>
+			<!--<td th:if="${trip.ownedByCurrentUser}" ><a th:href="${'http://localhost:8080/trips/'+trip.id}">
+				<button type="button" class="btn btn-default btn-lg">
+					<span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
+				</button>
+			</a></td>
+			<td><a th:href="${'http://localhost:8080/trips/'+trip.id}">
+				<button type="button" class="btn btn-default btn-lg">
+					<p th:text="${trip.getOwner().firstName}"></p>
+				</button>
+			</a></td>
+			<td><a th:href="${'http://localhost:8080/trips/'+trip.id}">
+				<button type="button" class="btn btn-default btn-lg">
+					<p th:text="${trip.owner}"></p>
+				</button>
+			</a></td>-->
+			<td th:text="${trip.averageRatingInText}"></td>
+
+
+		</tr>
+	</table>
+
+
+
+</div>
+</body>
+</html>
