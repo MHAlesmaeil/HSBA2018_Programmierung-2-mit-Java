@@ -32,20 +32,18 @@ public class NewTripController {
 	@GetMapping("/new-trip") // url
 	public String showForm (Model model){
 		model.addAttribute("newTripForm", new TripFormValidation());
-		// diese Variable ist hier nur für Testzwegnen // TODO: 08.08.2018 need to be deleted or place in another class
-		model.addAttribute("allTrips", tripServices.getAllTrips());
 		return "trips/new-trip";
 	}
-
-
 	// gleich wie oben
 	@PreAuthorize("authenticated")
 	@PostMapping("/new-trip")
 	public String createTrip (@ModelAttribute("newTripForm")@Valid TripFormValidation tripFormValidation, BindingResult bindingResult){
+		// wenn ein Fehler eintritt
 		if (bindingResult.hasErrors()){
 			return "trips/new-trip";}
-			Trip trip = new Trip();
-			tripServices.create(formAssembler.update(trip,tripFormValidation));
-			return "redirect:/index";
+		// sonst
+		Trip trip = new Trip();
+		tripServices.create(formAssembler.update(trip, tripFormValidation));
+		return "redirect:/index";
 	}
 }

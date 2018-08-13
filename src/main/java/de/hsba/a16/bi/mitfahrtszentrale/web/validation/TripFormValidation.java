@@ -1,29 +1,10 @@
 package de.hsba.a16.bi.mitfahrtszentrale.web.validation;
 
 import de.hsba.a16.bi.mitfahrtszentrale.trip.Trip;
-import org.springframework.format.datetime.DateFormatterRegistrar;
-
 import javax.validation.constraints.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class TripFormValidation {
 
-	/**
-	 *this.owner= owner;
-	 *         this.start = start;
-	 *         this.end = end;
-	 *         this.date = date;
-	 *         this.smoking = smoking;
-	 *         this.pet = pet;
-	 *         this.freeSeats = freeSeats;
-	 *         this.price = price;
-	 *         this.bookable= bookable;
-	*/
 	@Size.List({
 		@Size(min = 2, message = "Sie m�ssen mindesten 2 Buchstaben eintragen!"),
 		@Size(max = 50, message = "Der Name der Stadt kann nicht mehr als 50 Buchstabe sein")
@@ -40,11 +21,7 @@ public class TripFormValidation {
 
 	public TripFormValidation() {
 	}
-
-
 	public TripFormValidation(Trip trip) {
-
-
 		trip.setStart(getStart());
 		trip.setEnd(getEnd());
 		trip.setPet(isPet());

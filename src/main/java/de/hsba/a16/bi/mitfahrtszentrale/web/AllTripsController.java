@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class allTripsController {
+public class AllTripsController {
 	private  final TripServices tripServices;
 
-	public allTripsController(TripServices tripServices) {
+	public AllTripsController(TripServices tripServices) {
 		this.tripServices = tripServices;
 	}
 
@@ -24,6 +24,7 @@ public class allTripsController {
 		return "trips/all-trips";
 	}
 
+	// delete Controller
 	@PostMapping("/all-trips/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		tripServices.delete(id);

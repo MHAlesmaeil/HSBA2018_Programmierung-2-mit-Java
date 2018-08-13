@@ -1,13 +1,10 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
 import de.hsba.a16.bi.mitfahrtszentrale.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.persistence.*;
-import javax.transaction.TransactionScoped;
 import java.util.*;
 /**
  *Diese Klasse definiert eine Fahrt
@@ -30,7 +27,7 @@ public class Trip {
 	@ManyToOne
 	private User owner;
 
-
+	// TODO: 13.08.2018 das muss comparebale gemacht werden damit eine Fahrt nicht mehr erscheinen, wenn das Datum vorbei ist.
     private String date;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "trip")
@@ -38,21 +35,6 @@ public class Trip {
 
     public Long getId() {
         return id;
-    }
-
-    public Trip() {
-    }
-
-    public Trip( String start, String end, String date, boolean smoking, boolean pet, boolean bookable, int freeSeats, int price) {
-
-        this.start = start;
-        this.end = end;
-        this.date = date;
-        this.smoking = smoking;
-        this.pet = pet;
-        this.freeSeats = freeSeats;
-        this.price = price;
-        this.bookable= bookable;
     }
 
 	public boolean isBookable() {
@@ -118,27 +100,28 @@ public class Trip {
     public void setPrice(int price) {
         this.price = price;
     }
-	@Bean
+
 	public List<TripRating> getRatingList() {
 		if (ratingList == null){
 			ratingList = new ArrayList<>();
 		}
 		return ratingList;
 	}
-
 	public void setRatingList(List<TripRating> ratingList) {
 		this.ratingList = ratingList;
 	}
 
-	@Transient
+	@Transient // diese Spalte wird nicht in der Datenbank gespeichert
 	private double sum= 0;
-    @Transient
+	@Transient // diese Spalte wird nicht in der Datenbank gespeichert
     private double numberOfIteration=0;
-    private double averageRate;
-
+	// Der Durchschnitt wird hier als double berechnet werden
+	private double averageRate;
+	// Der Durchschnitt wird hier als String ausgezeigt, denn es ist einfacher zu formallieren
 	private String averageRatingInText;
 
 	public String getAverageRatingInText() {
+		// ruffen diese Methode auf, um den Durchschnitt berechnet zu werden
 		this.averageRateb();
 		return averageRatingInText;
 	}
@@ -147,30 +130,29 @@ public class Trip {
 		this.averageRatingInText = averageRatingInText;
 	}
 
-	@PostConstruct
+	// Rechnen von dem Durchschnitt
+	// TODO: 13.08.2018: Hinweis-> solche Methode könnte bei der Buchung angewendet werden, um die Zahl der Verfügbare Plätze bzw. den gesamten Preis zu berechnet.
 	private double averageRateb(){
-
 		for(TripRating local:getRatingList()){
 			sum=(sum+local.getRate());
 			numberOfIteration++;
 		}
 		if(numberOfIteration==0){
+			// wenn keine Bewertung gibt
 			averageRatingInText = "No Rating Yet";
 			return averageRate=0;
 		}
 		averageRate=sum/numberOfIteration;
-		System.out.println(averageRate);
+		// konvertieren den Double Wert als Text mit Format
 		averageRatingInText = String.format("%.1f", averageRate);
 		setAverageRatingInText(averageRatingInText);
 		setAverageRate(averageRate);
 		return averageRate;
 	}
 	public void setAverageRate(double averageRate) {
-
 		this.averageRate = averageRate;
 	}
 	public double getAverageRate() {
-		this.averageRateb();
 		return averageRate;
 	}
 

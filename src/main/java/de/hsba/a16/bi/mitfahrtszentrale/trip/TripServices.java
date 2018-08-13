@@ -14,7 +14,6 @@ public class TripServices {
 	private final TripRepository repository;
 	// Varible for trip rating repository
 	private final TripRatingRepository ratingRepository;
-
 	// Constructor
 	public TripServices(TripRepository repository, TripRatingRepository ratingRepository) {
 		this.repository = repository;
@@ -37,14 +36,11 @@ public class TripServices {
 	public void delete(Long id) {
 		this.repository.deleteById(id);
 	}
-
 	// add rating and making a trip and rating as parameter to call this function
 	public void addRating (Trip trip, TripRating rating){
 		rating.setTrip(trip);
 		trip.getRatingList().add(rating);
-
 	}
-
 	// this area is for triprating
 	//find all rating
 	public TripRating findTripRating(Long id) {

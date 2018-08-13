@@ -13,6 +13,7 @@ public class SignupFormValidation {
 		@Size(min = 4, message = "Ihre Eingabe muss mindesten 4 Buchstaben sein"),
 		@Size(max = 30, message = "Ihre muss max 30 Buchstaben sein")
 	})
+
 	private String name;
 	@Size.List({
 		@Size(min = 2, message = "Ihre Eingabe muss mindesten 4 Buchstaben sein"),

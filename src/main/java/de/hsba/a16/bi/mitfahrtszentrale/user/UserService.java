@@ -19,30 +19,18 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-	// Diese Nutzer wurden schon definiert und damit ist die Einlogen schon möglich
+
+	// Diese Nutzer wurde schon definiert und damit ist die Einlogen schon möglich
     @PostConstruct
     public void init() {
         if (userRepository.count() == 0) {
-            createUser("admin", "admin", "ADMIN", "Admin", "Last Name Admin", "mo@mail.com");
-            createUser("Anne", "123456", "USER", "first Anne", "last Anne", "mail@gmail.com");
-
+			createUserByEntiy(new User("admin", "admin", "ADMIN", "Admin", "Last Name Admin", "mo@mail.com"));
         }
     }
-	
-    public void createUser(String username, String password, String role, String firstName, String lastName, String email) {
-        userRepository.save(new User(username, passwordEncoder.encode(password), role, firstName, lastName, email));
-    }
+
+	// Einen neuen Nutzer erstellen
     public void createUserByEntiy (User user){
     	user.setPassword(passwordEncoder.encode(user.getPassword()));
     	userRepository.save(user);
-    }
-
-	// TODO: 08.08.2018 diese Methode sollte nur für TestZwecken benutzt werden --> No Implementation  
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
-    public List<User> findUsers() {
-        return userRepository.findUsers();
     }
 }

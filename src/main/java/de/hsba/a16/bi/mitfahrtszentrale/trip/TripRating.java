@@ -11,27 +11,22 @@ public class TripRating {
 
 	@Id@GeneratedValue
 	private Long id;
-
 	@ManyToOne
 	private Trip trip;
-
 	@Basic(optional = true)
 	private String comment;
-
 	private int rate;
 
+	// für die leere Form
 	public TripRating() {
 	}
 
-	int numberOfUsers = 0;
-	public TripRating(int numberOfUsers, Trip trip, String comment, int rate) {
+	public TripRating(Trip trip, String comment, int rate) {
 		// number of user who called this function
-		this.numberOfUsers = numberOfUsers;
 		this.trip = trip;
 		this.comment = comment;
 		this.rate = rate;
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -59,14 +54,5 @@ public class TripRating {
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
-
-	public int getNumberOfUsers() {
-		return numberOfUsers;
-	}
-
-	public void setNumberOfUsers(int numberOfUsers) {
-		this.numberOfUsers += numberOfUsers ++;
-	}
-	// calculation of the rate
 
 }

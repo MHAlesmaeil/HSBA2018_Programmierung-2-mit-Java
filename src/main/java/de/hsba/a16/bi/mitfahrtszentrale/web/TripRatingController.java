@@ -3,8 +3,8 @@ package de.hsba.a16.bi.mitfahrtszentrale.web;
 import de.hsba.a16.bi.mitfahrtszentrale.trip.Trip;
 import de.hsba.a16.bi.mitfahrtszentrale.trip.TripRating;
 import de.hsba.a16.bi.mitfahrtszentrale.trip.TripServices;
-import de.hsba.a16.bi.mitfahrtszentrale.user.UserService;
 import de.hsba.a16.bi.mitfahrtszentrale.web.fehler.NotFoundException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/trips/{id}")
+@PreAuthorize("authenticated")
 public class TripRatingController {
 	private final TripServices tripServices;
 
-
+	// constructor der Klasse
 	public TripRatingController(TripServices tripServices) {
 		this.tripServices = tripServices;
 	}
@@ -31,12 +32,15 @@ public class TripRatingController {
 	@GetMapping
 	public String showRating (Model model, @PathVariable("id") Long id){
 		model.addAttribute("ratingform", new TripRating());
-		model.addAttribute("showAvailableRating", tripServices.findTripRating(id));
 		return "trips/rating";
 	}
-	@PostMapping
-	public String sendRating (@PathVariable("id") Long id, @ModelAttribute("ratingForm") TripRating tripRating, BindingResult bindingResult, Model model){
+
+	@PostMapping // bewertung wird hier behandlet
+	public String sendRating(@PathVariable("id") Long id, @ModelAttribute("ratingForm") TripRating tripRating, BindingResult bindingResult, Model model) {
 		Trip trip = getTrip(id);
+		if (trip == null) {
+			throw new NotFoundException();
+		}
 		if (bindingResult.hasErrors()){
 			//todo validation need to be constructed here
 			return "trips/rating";
