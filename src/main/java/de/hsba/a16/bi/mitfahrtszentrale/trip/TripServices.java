@@ -41,16 +41,8 @@ public class TripServices {
 	// add rating and making a trip and rating as parameter to call this function
 	public void addRating (Trip trip, TripRating rating){
 		rating.setTrip(trip);
-		trip.getRaing().add(rating);
+		trip.getRatingList().add(rating);
 
-	}
-
-	// for test purpose a trip has been created
-	@PostConstruct
-	public void init() {
-		if (repository.count() == 0) {
-			create(new Trip("hh", "hh", "01.12.2018 ", false, false, false, 12, 12));
-		}
 	}
 
 	// this area is for triprating

@@ -9,6 +9,7 @@
 	<div class="page-header">
 		<h1>Bewerten Sie diese Fahrt</h1>
 	</div>
+
 	<form method="post" class="form-horizontal" th:object="${ratingform}" th:action="@{'http://localhost:8080/trips/'+${tripNumber.id}}">
 		<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
 			<p>Ihre Kommentar ist nicht vollständig</p>
@@ -34,14 +35,14 @@
 			</div>
 		</div>
 	</form>
-	<table th:if="${!tripNumber.raing.empty}" class="table table-responsive-md table-bordered table-success">
+	<table th:if="${!tripNumber.ratingList.empty}" class="table table-responsive-md table-bordered table-success">
 		<tr>
 			<th>#</th>
 			<th>Rate</th>
 			<th>Comment</th>
 
 		</tr>
-		<tr th:each="rating: ${tripNumber.raing}">
+		<tr th:each="rating: ${tripNumber.ratingList}">
 			<td th:text="${rating.id}"></td>
 			<td th:text="${rating.rate}"></td>
 			<td th:text="${rating.comment}"></td>

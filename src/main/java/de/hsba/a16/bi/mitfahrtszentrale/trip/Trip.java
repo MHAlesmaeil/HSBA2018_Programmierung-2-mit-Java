@@ -1,12 +1,12 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
-import de.hsba.a16.bi.mitfahrtszentrale.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.text.SimpleDateFormat;
+import javax.transaction.TransactionScoped;
 import java.util.*;
 /**
  *Diese Klasse definiert eine Fahrt
@@ -30,7 +30,7 @@ public class Trip {
     private String date;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "trip")
-	private List<TripRating> raing;
+	private List<TripRating> ratingList;
 
     public Long getId() {
         return id;
@@ -114,15 +114,64 @@ public class Trip {
     public void setPrice(int price) {
         this.price = price;
     }
-
-	public List<TripRating> getRaing() {
-		if (raing== null){
-			raing= new ArrayList<>();
+	@Bean
+	public List<TripRating> getRatingList() {
+		if (ratingList == null){
+			ratingList = new ArrayList<>();
 		}
-		return raing;
+		return ratingList;
 	}
 
-	public void setRaing(List<TripRating> raing) {
-		this.raing = raing;
+	public void setRatingList(List<TripRating> ratingList) {
+		this.ratingList = ratingList;
 	}
+
+	@Transient
+	private double sum= 0;
+    @Transient
+    private double numberOfIteration=0;
+    private double averageRate;
+
+	private String averageRatingInText;
+
+	public String getAverageRatingInText() {
+		this.averageRateb();
+		return averageRatingInText;
+	}
+
+	public void setAverageRatingInText(String averageRatingInText) {
+		this.averageRatingInText = averageRatingInText;
+	}
+
+	@PostConstruct
+	private double averageRateb(){
+
+		for(TripRating local:getRatingList()){
+
+			sum=(sum+local.getRate());
+			System.out.println("SUm of average rate"+sum);
+			numberOfIteration++;
+			System.out.println("Numbe of iteration "+ numberOfIteration);
+		}
+		if(numberOfIteration==0){
+			return averageRate=0;
+		}
+		averageRate=sum/numberOfIteration;
+		System.out.println(averageRate);
+		averageRatingInText=String.format("%.2f",averageRate);
+		setAverageRatingInText(averageRatingInText);
+		setAverageRate(averageRate);
+		return averageRate;
+	}
+	public void setAverageRate(double averageRate) {
+
+		this.averageRate = averageRate;
+	}
+	public double getAverageRate() {
+		this.averageRateb();
+		return averageRate;
+	}
+
+
+
 }
