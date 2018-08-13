@@ -1,5 +1,6 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
+import de.hsba.a16.bi.mitfahrtszentrale.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,9 @@ public class Trip {
     private int freeSeats;
     @Basic(optional = false)
     private int price;
+
+	@ManyToOne
+	private User owner;
 
 
     private String date;
@@ -147,18 +151,16 @@ public class Trip {
 	private double averageRateb(){
 
 		for(TripRating local:getRatingList()){
-
 			sum=(sum+local.getRate());
-			System.out.println("SUm of average rate"+sum);
 			numberOfIteration++;
-			System.out.println("Numbe of iteration "+ numberOfIteration);
 		}
 		if(numberOfIteration==0){
+			averageRatingInText = "No Rating Yet";
 			return averageRate=0;
 		}
 		averageRate=sum/numberOfIteration;
 		System.out.println(averageRate);
-		averageRatingInText=String.format("%.2f",averageRate);
+		averageRatingInText = String.format("%.1f", averageRate);
 		setAverageRatingInText(averageRatingInText);
 		setAverageRate(averageRate);
 		return averageRate;
@@ -172,6 +174,17 @@ public class Trip {
 		return averageRate;
 	}
 
+	public User getOwner() {
+		return owner;
+	}
 
+	@PrePersist
+	private void onPersist() {
+		this.owner = User.getCurrentUser();
+	}
+
+	public boolean isOwnedByCurrentUser() {
+		return this.owner != null && this.owner.equals(User.getCurrentUser());
+	}
 
 }
