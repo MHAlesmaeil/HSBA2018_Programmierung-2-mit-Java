@@ -6,17 +6,17 @@ import javax.validation.constraints.*;
 public class TripFormValidation {
 
 	@Size.List({
-		@Size(min = 2, message = "Sie mï¿½ssen mindesten 2 Buchstaben eintragen!"),
+		@Size(min = 2, message = "Sie m?ssen mindesten 2 Buchstaben eintragen!"),
 		@Size(max = 50, message = "Der Name der Stadt kann nicht mehr als 50 Buchstabe sein")
 	})
 	private String start, end;
 	private String date;
 	private boolean somking, pet,bookable;
-	@Min(value = 1, message = "Mindestens mÃ¼ssen Sie einen freien Platz um einen Trip zulegen")
+	@Min(value = 1, message = "Mindestens müssen Sie einen freien Platz um einen Trip zulegen")
 	@Max(value = 14, message = "Mehr als 14 platz geht leider nicht, wir sind keine Buszentrale")
 	private int freeSeats;
 	@Min(0)
-	@Max(value = 1000, message = "Mehr als 1000 Euro fÃ¼r einen Platz kann man nicht anfragen")
+	@Max(value = 1000, message = "Mehr als 1000 Euro für einen Platz kann man nicht anfragen")
 	private int price;
 
 	public TripFormValidation() {

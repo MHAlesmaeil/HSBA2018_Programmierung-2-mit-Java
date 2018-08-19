@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  *Form Validierung
  * 
- * // TODO: 08.08.2018 eine kleine Formvalidierung fÃ¼r die Bewertung jeweiliches Trips 
+ * // TODO: 08.08.2018 eine kleine Formvalidierung für die Bewertung jeweiliches Trips 
 */
 
 @Component

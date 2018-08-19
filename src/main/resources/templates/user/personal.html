@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
+<body>
+<div layout:fragment="content">
+	<h1>User Info</h1>
+	<div th:if="${!userPosts.isEmpty()}">
+		<table class="table table-responsive-md table-bordered table-success">
+			<tr>
+				<th>#</th>
+				<th>Start</th>
+				<th>Ende</th>
+				<th>Date des Trips</th>
+				<th>Preis</th>
+				<th>Verfuegbare Plaetze</th>
+				<th>Pet</th>
+				<th>Smoking</th>
+				<th>Buchbar</th>
+				<th>go to rating</th>
+				<th>Average rating</th><!-- Delete Option nur für den Owner -->
+				<th>First Name</th> <!-- der Vorname nur für den Owner gezeigt wird -->
+				<th>Options</th><!-- hier wird der Owner gezeigt -->
+
+
+			</tr>
+			<tr th:each="trip :${userPosts}">
+				<td th:text="${trip.id}"></td>
+				<td th:text="${trip.start}"></td>
+				<td th:text="${trip.end}"></td>
+				<td th:text="${trip.date}"></td>
+				<!-- wenn der Preis ==0 dann wird Free erscheien, sonst erscheint der Preis -->
+				<td th:text="${trip.price==0}?'Free':${trip.price}"></td>
+				<td th:text="${trip.freeSeats}"></td>
+				<td th:text="${trip.pet}?'Ja Gerne':'Nein, Danke'"></td>
+				<td th:text="${trip.smoking}?'Ja Gerne':'Nein, Danke'"></td>
+				<td th:text="${trip.bookable}?'Ja Gerne':'Nein, Danke'"></td>
+				<td><a th:href="${'http://localhost:8080/trips/'+trip.id}"> Here</a></td>
+				<td th:text="${trip.averageRatingInText}">Rating</td>
+				<td th:text="${trip.getOwner().firstName}"></td>
+				<td th:if="${trip.ownedByCurrentUser}">
+					<form th:action="@{'http://localhost:8080/all-trips/delete/'+${trip.id}}" method="post">
+						<input type="submit" class="btn btn-danger" th:value="Delete">
+					</form>
+					<br>
+					<form th:action="@{'http://localhost:8080/all-trips/bookable/'+${trip.id}}" method="post">
+						<input type="submit" class="btn btn-success" th:value="Buchabar">
+					</form>
+				</td>
+				<!-- wenn es nicht von dem eingelogten User besetzt und es ist buckbar, wird die Buchungsoption erscheinen -->
+			</tr>
+		</table>
+	</div>
+</div>
+</body>

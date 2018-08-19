@@ -1,9 +1,8 @@
 package de.hsba.a16.bi.mitfahrtszentrale.trip;
 
 import de.hsba.a16.bi.mitfahrtszentrale.user.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import javax.annotation.PostConstruct;
+
 import javax.persistence.*;
 import java.util.*;
 /**

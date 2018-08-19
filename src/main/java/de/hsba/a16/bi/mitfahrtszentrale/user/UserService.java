@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Transactional

@@ -32,6 +32,8 @@
 				<a class="nav-link" href="http://localhost:8080/signup">New User</a>
 			</li>
 
+
+
 		</ul>
 		<ul class="navbar-nav mr-auto navbar-brand">
 			<form class="form-inline my-2 my-lg-0">
@@ -48,6 +50,10 @@
 			<li class="nav-item" sec:authorize="isAuthenticated()" >
 				<a class="nav-link" href="http://localhost:8080/logout">Logout <span th:text="${#httpServletRequest.remoteUser}" /></a>
 			</li>
+			<li class="nav-item" sec:authorize="isAuthenticated()" >
+				<a class="nav-link" href="http://localhost:8080/personal">Personal Posts</a>
+			</li>
+
 
 
 		</ul>

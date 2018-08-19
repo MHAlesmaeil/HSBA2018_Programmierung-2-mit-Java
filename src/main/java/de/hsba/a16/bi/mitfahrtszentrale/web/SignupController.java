@@ -2,10 +2,10 @@ package de.hsba.a16.bi.mitfahrtszentrale.web;
 
 
 
+import de.hsba.a16.bi.mitfahrtszentrale.web.validation.SignupFormValidation;
 import de.hsba.a16.bi.mitfahrtszentrale.user.User;
 import de.hsba.a16.bi.mitfahrtszentrale.user.UserService;
 import de.hsba.a16.bi.mitfahrtszentrale.web.validation.SignupFormAssembler;
-import de.hsba.a16.bi.mitfahrtszentrale.web.validation.SignupFormValidation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class SignupController {
     private final UserService userService;
     private final SignupFormAssembler formAssembler;
-	// TODO: 13.08.2018 Form Validation für diese Seite muss für diese Seite erstellt werden 
+	// TODO: 13.08.2018 Form Validation für diese Seite muss f?r diese Seite erstellt werden
 
 	public SignupController(UserService userService, SignupFormAssembler formAssembler) {
 		this.userService = userService;
@@ -27,7 +27,7 @@ public class SignupController {
 	//  jeder kann den URL aufrufen
 	@GetMapping("/signup")
     public String signupShow (Model model){
-		// nur für Testzwecke todo löschen, wenn Ihr das nicht mehr bracht .. vergis bitte auch nicht den Code bei HTML zu löschen auch
+		// nur f?r Testzwecke todo löschen, wenn Ihr das nicht mehr bracht .. vergis bitte auch nicht den Code bei HTML zu l?schen auch
        model.addAttribute("signupForm", new SignupFormValidation());
         return "signup";
     }
