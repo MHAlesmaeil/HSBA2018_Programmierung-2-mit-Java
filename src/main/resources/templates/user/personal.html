@@ -8,7 +8,6 @@
 	<div th:if="${!userPosts.isEmpty()}">
 		<table class="table table-responsive-md table-bordered table-success">
 			<tr>
-				<th>#</th>
 				<th>Start</th>
 				<th>Ende</th>
 				<th>Date des Trips</th>
@@ -25,7 +24,6 @@
 
 			</tr>
 			<tr th:each="trip :${userPosts}">
-				<td th:text="${trip.id}"></td>
 				<td th:text="${trip.start}"></td>
 				<td th:text="${trip.end}"></td>
 				<td th:text="${trip.date}"></td>

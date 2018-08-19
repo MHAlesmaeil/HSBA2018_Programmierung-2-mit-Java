@@ -11,9 +11,8 @@
 			Unsere Fahrten
 		</h1>
 	</div>
-	<table th:if="${!allTrips.empty}" class="table table-responsive-md table-bordered table-success">
+	<table th:if="${!allTrips.empty}" class="table table-responsive-md table-borderless table-success">
 		<tr>
-			<th>#</th>
 			<th>Start</th>
 			<th>Ende</th>
 			<th>Date des Trips</th>
@@ -30,8 +29,7 @@
 
 
 		</tr>
-		<tr th:each="trip :${allTrips}">
-			<td th:text="${trip.id}"></td>
+		<tr th:each="trip :${allTrips}" th:classappend="${trip.bookable}? '':'table table-responsive-md table-dark'">
 			<td th:text="${trip.start}"></td>
 			<td th:text="${trip.end}"></td>
 			<td th:text="${trip.date}"></td>
