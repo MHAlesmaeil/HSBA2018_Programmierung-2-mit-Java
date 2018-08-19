@@ -50,9 +50,10 @@
 				</form>
 			</td>
 			<!-- wenn es nicht von dem eingelogten User besetzt und es ist buckbar, wird die Buchungsoption erscheinen -->
-			<td th:if="${!trip.ownedByCurrentUser && trip.bookable==true}">
+			<td th:if="${!trip.ownedByCurrentUser}">
 				<form th:action="@{'http://localhost:8080/all-trips/booking/'+${trip.id}}" method="post">
-					<input type="submit" class="btn btn-info" th:value="Buchen">
+					<input type="submit" th:classappend="${trip.bookable}? 'btn btn-info':'btn btn-dark'"
+						   th:value="Buchen" th:disabled="${!trip.bookable}">
 				</form>
 			</td>
 
