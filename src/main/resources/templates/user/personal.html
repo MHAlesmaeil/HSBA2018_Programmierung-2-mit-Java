@@ -44,7 +44,8 @@
 					</form>
 					<br>
 					<form th:action="@{'http://localhost:8080/all-trips/bookable/'+${trip.id}}" method="post">
-						<input type="submit" class="btn btn-success" th:value="Buchabar">
+						<input type="submit" th:classappend="${trip.bookable}? 'btn btn-success':'btn btn-dark'"
+							   th:value="Buchabar">
 					</form>
 				</td>
 				<!-- wenn es nicht von dem eingelogten User besetzt und es ist buckbar, wird die Buchungsoption erscheinen -->
