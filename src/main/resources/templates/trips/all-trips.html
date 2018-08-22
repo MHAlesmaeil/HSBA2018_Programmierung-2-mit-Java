@@ -25,9 +25,6 @@
 			<th>Average rating</th><!-- Delete Option nur für den Owner -->
 			<th>First Name</th> <!-- der Vorname nur für den Owner gezeigt wird -->
 			<th>Options</th><!-- hier wird der Owner gezeigt -->
-
-
-
 		</tr>
 		<tr th:each="trip :${allTrips}" th:classappend="${trip.bookable}? '':'table table-responsive-md table-dark'">
 			<td th:text="${trip.start}"></td>

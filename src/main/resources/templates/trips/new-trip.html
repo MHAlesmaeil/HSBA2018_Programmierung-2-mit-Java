@@ -30,7 +30,8 @@
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-2 control-label" >Das Datum</label>
 			<div class="col-sm-10">
-				<input type="date" class="form-control" min="2018-01-01" required   id="inputDate" th:field="*{date}" name="date"/>
+				<input type="datetime-local" class="form-control" min="2018-01-01" required id="inputDate"
+					   th:field="*{date}" name="date"/>
 				<label class="text-danger" th:errors="*{date}"/>
 			</div>
 		</div>

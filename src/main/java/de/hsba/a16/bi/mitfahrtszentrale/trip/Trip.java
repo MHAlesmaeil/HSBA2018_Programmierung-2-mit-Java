@@ -4,7 +4,8 @@ import de.hsba.a16.bi.mitfahrtszentrale.user.User;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *Diese Klasse definiert eine Fahrt
 */
@@ -45,6 +46,8 @@ public class Trip {
 	}
 
 	public void setDate(String date) {
+
+
 		this.date = date;
 	}
 
